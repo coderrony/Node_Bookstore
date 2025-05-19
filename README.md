@@ -57,3 +57,18 @@ Run on browser
 - Authentication 
 - Role Base Authorization
 
+## Documentation
+
+- Adding [tailwindcss](https://tailwindcss.com/docs/installation/using-postcss) a utility-first CSS framework that helps build modern and responsive user interfaces efficiently.
+- [bcrypt](https://www.npmjs.com/package/bcrypt) used to hash passwords securely before storing them in the database.
+- [express-session](https://www.npmjs.com/package/express-session)  manages session data on the server-side, enabling user login sessions.
+- [connect-mongodb-session](https://www.npmjs.com/package/connect-mongodb-session) stores session data in MongoDB, allowing persistence across restarts.
+- [dotenv](https://www.npmjs.com/package/dotenv) loads environment variables from a .env file into process.env to manage config secrets like DB URIs and ports.
+- [express](https://www.npmjs.com/package/express) a minimal and flexible Node.js web framework used for routing, middleware, and server handling.
+- [ejs](https://www.npmjs.com/package/ejs) a simple templating language that lets you generate HTML markup with plain JavaScript.
+- [express-validator](https://www.npmjs.com/package/express-validator) provides middleware for validating and sanitizing request data, often used in form validation.
+- [mongoose](https://www.npmjs.com/package/mongoose) ODM (Object Data Modeling) library for MongoDB and Node.js, used to define schemas and interact with MongoDB.
+- [multer](https://www.npmjs.com/package/multer) middleware for handling multipart/form-data, primarily used for uploading files (e.g., book images).
+
+
+
