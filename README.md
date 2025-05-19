@@ -1,0 +1,1 @@
+This application is developed based on the MVC pattern, demonstrating how MVC works in practice. The entire application, including both the frontend and backend, is rendered on a Node.js server. It represents a bookstore where users—depending on their roles (admin or guest)—can add, delete, and update books. Additional features include adding books to a cart, wishlist, and more.
