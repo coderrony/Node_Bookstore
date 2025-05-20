@@ -16,7 +16,7 @@ import adminRoutes from "./routes/adminRouter.js";
 //configure environment 
 dotenv.config()
 // admin route 
-const private_route = ["/add-book"]
+const private_route = ["/add-book","/edit-book"]
 
 const app = express()
 const PORT = process.env.PORT
@@ -95,8 +95,8 @@ app.use(homeRoutes)
 app.use(authRouters)
 app.use(adminRoutes)
 
-app.use(["/book","/"],express.static(path.join(rootDir,"public")))
-app.use(["/uploads","/book/uploads"],express.static(path.join(rootDir,"uploads")))
+app.use(["/book","/edit-book","/"],express.static(path.join(rootDir,"public")))
+app.use(["/uploads","/book/uploads","/edit-book/uploads"],express.static(path.join(rootDir,"uploads")))
 
 // error handle by error page
 app.use((req,res,next)=>{

@@ -2,9 +2,19 @@
 <body>
   <%- include('../partials/nav') %>
   <main class="container mx-auto mt-10 p-8 rounded-lg shadow-lg max-w-2xl bg-white">
-    <h1 class="text-3xl font-bold mb-8 text-center text-gray-800 border-b pb-4">Add a New Book</h1>
+    <h1 class="text-3xl font-bold mb-8 text-center text-gray-800 border-b pb-4"> <%= editing ? "Edit Book" : "Add a New Book"%> </h1>
     <%- include('../partials/errors') %>
-    <form action="/add-book" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form  action="<%= editing ? "/edit-book" : "/add-book"%>"  method="POST" enctype="multipart/form-data" class="space-y-6">
+      <% if (editing) { %>
+        <input
+          type="hidden"
+          id="bookId"
+          name="bookId"
+          placeholder="Book ID"
+          value="<%= oldInput && oldInput._id ? oldInput._id : '' %>"
+           />
+      <% } %>
+      </div>
       <!-- Name -->
       <div>
         <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Book Name</label>
@@ -61,11 +71,14 @@
           name="image"
           accept="image/*"
           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 transition cursor-pointer"
-          required />
+           />
       </div>
+        <% if (oldInput && oldInput.image) { %>
+        <img src="<%= oldInput.image %>" class="object-cover w-20 h-20" />
+        <% } %>
       <!-- Submit Button -->
       <button type="submit" class="w-full bg-red-500 text-white py-3 rounded-md hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-semibold text-lg transition duration-300 flex items-center justify-center gap-2">
-        <span>Add Book</span>
+        <span> <%= editing ? "Update Book" : "Add Book" %> </span>
         <i class="fas fa-plus"></i>
       </button>
     </form>

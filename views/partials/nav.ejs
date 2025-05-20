@@ -17,10 +17,26 @@
         >Home</a
       >
       <% if (userSession?.isLogin && userSession?.user?.userType === 'admin') { %>
-        <a
-          href="/add-book"
-          class="<%= currentPage === 'add-book' ? 'underline font-bold' : '' %> mr-5 hover:text-gray-900 cursor-pointer"
-        >Add Book</a>
+          <% if (currentPage === 'add-book') { %>
+            <a
+              href="/add-book"
+              class="underline font-bold mr-5 hover:text-gray-900 cursor-pointer"
+            >Add Book</a>
+          <% } else { %>
+          <% if (currentPage === 'edit-book') { %>
+              <a
+              href="/add-book"
+              class="underline font-bold mr-5 hover:text-gray-900 cursor-pointer"
+            >Edit Book</a>
+          <% } else { %>
+            <a
+             href="/add-book"
+             class=" mr-5 hover:text-gray-900 cursor-pointer"
+            >Add Book</a>
+          <% } %>
+              
+          <% } %>
+
       <% } %>
    
       <a
