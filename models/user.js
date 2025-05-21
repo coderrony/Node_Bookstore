@@ -12,13 +12,10 @@ const userSchema = new mongoose.Schema({
       ref:"Book"
     }
   ],
-  whiteList:[
-    {
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"Book"
-    }
-  ],
+
 }, { timestamps: true });
+
+
 
 export const User= mongoose.models.User || mongoose.model('User', userSchema);
 

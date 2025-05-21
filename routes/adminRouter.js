@@ -1,6 +1,6 @@
 
 import express from "express";
-import { getAddBook ,getEditBook,postAddBook, postEditBook} from "../controllers/adminControllers.js";
+import { getAddBook ,getEditBook,postAddBook, postEditBook,postDeleteBook} from "../controllers/adminControllers.js";
 
 
 
@@ -11,5 +11,7 @@ adminRoutes.post("/add-book",postAddBook)
 
 adminRoutes.get("/edit-book/:bookId",getEditBook)
 adminRoutes.post("/edit-book",postEditBook)
+
+adminRoutes.post("/delete-book/:bookId",postDeleteBook)
 
 export default adminRoutes

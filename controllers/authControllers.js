@@ -121,7 +121,7 @@ export const postRegister = [
 ];
 
 export const getLogin = (req, res, next) => {
-  console.log("req.session ",req.session);
+
   
   res.render('auth/login', { pageTitle: 'Login', currentPage: 'login',  oldInput: {},errors: [],userSession:req.session.userSession});
 };
@@ -129,10 +129,10 @@ export const getLogin = (req, res, next) => {
 export const postLogin =async (req, res, next) => {
   const {email,password} = req.body
   const findUser =await User.findOne({email})
-  console.log("findUser ",findUser);
+
   if(findUser){ 
    const matchPass =  await bcrypt.compare(password, findUser.password);
-   console.log("matchPass ",matchPass);
+
    if(matchPass){ 
     // confirm user is logged in
     req.session.userSession = {isLogin:true,user:findUser}

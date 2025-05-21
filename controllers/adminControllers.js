@@ -55,30 +55,32 @@ export const getEditBook = async (req, res) => {
   const editing = req?.query?.editing;
   const user = req?.session?.userSession?.user;
 
-try {
-  const userBookFound = await Book.findOne({ _id: bookId, userId: user?._id });
-  if (!userBookFound || user.userType !== 'admin') {
-    res.redirect('/not-found');
-  } else {
-    res.render('book/add-edit-book', {
-      pageTitle: 'Edit Book',
-      currentPage: 'edit-book',
-      editing,
-      oldInput: userBookFound,
-      errors: [],
-      userSession: req.session.userSession,
+  try {
+    const userBookFound = await Book.findOne({
+      _id: bookId,
+      userId: user?._id,
     });
+    if (!userBookFound || user.userType !== 'admin') {
+      res.redirect('/not-found');
+    } else {
+      res.render('book/add-edit-book', {
+        pageTitle: 'Edit Book',
+        currentPage: 'edit-book',
+        editing,
+        oldInput: userBookFound,
+        errors: [],
+        userSession: req.session.userSession,
+      });
+    }
+  } catch (error) {
+    console.log('error: ', error);
+
+    res.redirect('/not-found');
   }
-} catch (error) {
-  console.log("error: ",error);
-
-   res.redirect('/not-found');
-}
-
 };
 
 export const postEditBook = async (req, res) => {
-  const user = req.session.userSession.user;
+  const user = req?.session?.userSession?.user;
   const { bookId, name, price, description } = req.body;
   const book = await Book.findById(bookId);
 
@@ -86,7 +88,7 @@ export const postEditBook = async (req, res) => {
     res.redirect('/not-found');
   }
 
-  //  file handle
+  //  delete file locally in uploads/
   if (req.file) {
     fs.unlink(book.image, err => {
       if (err) {
@@ -117,4 +119,32 @@ export const postEditBook = async (req, res) => {
     });
 
   res.redirect('/');
+};
+
+export const postDeleteBook = async (req, res) => {
+  const user = req?.session?.userSession?.user;
+  const bookId = req.params.bookId;
+
+  try {
+    const userBookFound = await Book.findOne({
+      _id: bookId,
+      userId: user?._id,
+    });
+    if (!userBookFound || user.userType !== 'admin') {
+      res.redirect('/not-found');
+    } else {
+      //  delete file locally in uploads/
+      fs.unlink(userBookFound.image, err => {
+        if (err) {
+          console.log('file error ', err);
+        }
+      });
+      // delete from mongodb
+      await Book.findByIdAndDelete(bookId);
+
+      res.redirect('/');
+    }
+  } catch (error) {
+    res.redirect('/not-found');
+  }
 };

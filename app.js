@@ -12,6 +12,7 @@ import rootDir from './utils/pathUtils.js';
 import homeRoutes from "./routes/homeRouter.js";
 import authRouters from "./routes/authRouter.js";
 import adminRoutes from "./routes/adminRouter.js";
+import guestRoutes from "./routes/guestRouter.js";
 
 //configure environment 
 dotenv.config()
@@ -45,6 +46,11 @@ app.use(session({
   }
    
 }));
+
+// debug mongodb
+if(process.env.NODE_ENV === 'DEVELOPMENT'){ 
+  mongoose.set('debug',true)
+}
 
 // handle authentication & authorization
 app.use((req,res,next)=>{ 
@@ -92,6 +98,7 @@ app.use((req,res,next)=>{
 })
 
 app.use(homeRoutes)
+app.use(guestRoutes)
 app.use(authRouters)
 app.use(adminRoutes)
 
