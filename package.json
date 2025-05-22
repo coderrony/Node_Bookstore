@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
