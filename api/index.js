@@ -6,7 +6,7 @@ import session from "express-session";
 import connectMongoDBSession from "connect-mongodb-session";
 
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import { dirname,join } from "path";
 
 import homeRoutes from "../routes/homeRouter.js";
 import authRouters from "../routes/authRouter.js";
