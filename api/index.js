@@ -34,8 +34,9 @@ async function connectDB() {
   return cached.conn;
 }
 
-app.set("view engine", "ejs");
-app.set("views", "views");
+app.set('views', path.join(__dirname, '../views')) // গুরুত্বপূর্ণ
+app.set('view engine', 'ejs')
+
 app.use(express.urlencoded({ extended: true }));
 
 const MongoDBStore = connectMongoDBSession(session);
