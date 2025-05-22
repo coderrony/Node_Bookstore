@@ -36,7 +36,7 @@ async function connectDB() {
   return cached.conn;
 }
 
-app.set('views', path.join(rootDir, 'views')) // গুরুত্বপূর্ণ
+app.set('views', path.join(rootDir, '/views')) // গুরুত্বপূর্ণ
 app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }));
@@ -94,7 +94,7 @@ app.use(authRouters);
 app.use(adminRoutes);
 
 // Serve static files
-app.use(express.static(path.join(rootDir, "public")));
+app.use(express.static(path.join(rootDir, "/public")));
 
 app.use((req, res, next) => {
   res.render("404", { pageTitle: "Error Page" });
