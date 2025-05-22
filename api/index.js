@@ -5,19 +5,21 @@ import mongoose from "mongoose";
 import session from "express-session";
 import connectMongoDBSession from "connect-mongodb-session";
 
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import { dirname } from "path";
+
 
 import homeRoutes from "../routes/homeRouter.js";
 import authRouters from "../routes/authRouter.js";
 import adminRoutes from "../routes/adminRouter.js";
 import guestRoutes from "../routes/guestRouter.js";
+import rootDir from "../utils/pathUtils.js";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const rootDir = __dirname;
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+// const rootDir = __dirname;
 
 const app = express();
 
@@ -34,7 +36,7 @@ async function connectDB() {
   return cached.conn;
 }
 
-app.set('views', path.join(__dirname, '../views')) // গুরুত্বপূর্ণ
+app.set('views', path.join(rootDir, 'views')) // গুরুত্বপূর্ণ
 app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }));
@@ -66,14 +68,14 @@ app.use((req, res, next) => {
   next();
 });
 
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
-  if (allowedTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-};
+// const fileFilter = (req, file, cb) => {
+//   const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+//   if (allowedTypes.includes(file.mimetype)) {
+//     cb(null, true);
+//   } else {
+//     cb(null, false);
+//   }
+// };
 
 // ⚠️ Multer + diskStorage not supported on Vercel
 // Only enable this when deploying elsewhere
@@ -92,7 +94,7 @@ app.use(authRouters);
 app.use(adminRoutes);
 
 // Serve static files
-app.use(express.static(path.join(rootDir, "../public")));
+app.use(express.static(path.join(rootDir, "public")));
 
 app.use((req, res, next) => {
   res.render("404", { pageTitle: "Error Page" });
