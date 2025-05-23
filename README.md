@@ -31,7 +31,7 @@ Create a .env file in the root directory and fill in the values according to .en
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 Start the tailwind
 
