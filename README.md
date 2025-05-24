@@ -31,7 +31,7 @@ Create a .env file in the root directory and fill in the values according to .en
 Start the server
 
 ```bash
-  npm run dev
+  npm run start
 ```
 Start the tailwind
 
@@ -57,6 +57,7 @@ Run on browser
 - Authentication 
 - Role Base Authorization
 
+
 ## Documentation
 
 - Adding [tailwindcss](https://tailwindcss.com/docs/installation/using-postcss) a utility-first CSS framework that helps build modern and responsive user interfaces efficiently.
@@ -70,5 +71,6 @@ Run on browser
 - [mongoose](https://www.npmjs.com/package/mongoose) ODM (Object Data Modeling) library for MongoDB and Node.js, used to define schemas and interact with MongoDB.
 - [multer](https://www.npmjs.com/package/multer) middleware for handling multipart/form-data, primarily used for uploading files (e.g., book images).
 
+## On Youtube
 
-
+[![Watch the demo](https://img.youtube.com/vi/N4_nFQ81ZyU/0.jpg)](https://youtu.be/N4_nFQ81ZyU?si=g-DGPiLvfUa8i09u)
